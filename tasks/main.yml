@@ -1,0 +1,22 @@
+---
+# tasks file for web
+- name: Install apache2 httpd
+  ansible.builtin.apt:
+    name: apache2
+    state: present
+    update_cache: yes
+
+- name: Start and enable apache2 service
+  ansible.builtin.service:
+    name: apache2
+    state: started
+    enabled: yes
+
+- name: Copy the HTML file to the managed node
+  ansible.builtin.copy:
+    src: files/w3school1.html
+    dest: /var/www/html/w3school1.html
+    owner: root
+    group: root
+    mode: '0644'
+
